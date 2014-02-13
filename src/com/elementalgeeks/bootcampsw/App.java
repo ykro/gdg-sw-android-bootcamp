@@ -43,11 +43,18 @@ public class App extends Application {
 		            		JSONObject JSONevent;
 							try {
 								JSONevent = response.getJSONObject(i);
+								String website = "startupweekend.org";
+								try {
+									website = JSONevent.getString("website");
+								} catch (JSONException ex) {
+									Log.e(TAG,Log.getStackTraceString(ex));
+								}
+
 			            		Event e = new Event();
 			            		e.setId(JSONevent.getString("id"));
 			            		e.setCity(JSONevent.getString("city"));
 			            		e.setCountry(JSONevent.getString("country"));				            		
-			            		e.setWebsite(JSONevent.getString("website"));
+			            		e.setWebsite(website);
 			            		e.setLat(JSONevent.getJSONObject("location").getDouble("lat"));
 			            		e.setLng(JSONevent.getJSONObject("location").getDouble("lng"));
 			            		

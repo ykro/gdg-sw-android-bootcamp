@@ -7,14 +7,12 @@ import java.util.HashMap;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.elementalgeeks.bootcampsw.App;
 import com.elementalgeeks.bootcampsw.R;
 import com.elementalgeeks.bootcampsw.activities.MainActivity;
 import com.elementalgeeks.bootcampsw.data.Event;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -26,9 +24,8 @@ public class EventsMapFragment extends SupportMapFragment implements OnInfoWindo
 	private App app;
 	private GoogleMap map;
 	private Bundle savedInstanceState;
-	private HashMap<Marker, Event> markers;
-	
-	public static final LatLng GUATEMALA = new LatLng(14.62, -90.56);
+	private HashMap<Marker, Event> markers;	
+	//public static final LatLng GUATEMALA = new LatLng(14.62, -90.56);
 
 	@Override
 	public void onCreate(Bundle savedInstnace) {
@@ -57,16 +54,22 @@ public class EventsMapFragment extends SupportMapFragment implements OnInfoWindo
 			markers.put(m, e);
 		}
 	}
-	
+
+    	
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+	    super.onHiddenChanged(hidden);
+	    if (!hidden) {
+	        if (!app.getEvents().isEmpty() && markers.isEmpty()) {
+	        	addMarkersToMap();
+	        }
+	    }
+	}
 	
     @Override
     public void onResume() {
         super.onResume();
         setupMap();
-        if (!app.getEvents().isEmpty() && markers.isEmpty()) {
-        	Log.e(app.getTAG(),"drawing");
-        	addMarkersToMap();
-        }
     }	
     
     public void setupMap() {
@@ -74,7 +77,7 @@ public class EventsMapFragment extends SupportMapFragment implements OnInfoWindo
     		map = getMap();
             if (map != null) {
                 if (savedInstanceState == null) {
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(GUATEMALA, 10));
+                    //map.moveCamera(CameraUpdateFactory.newLatLngZoom(GUATEMALA, 10));
                     map.setMyLocationEnabled(true);
                     map.setOnInfoWindowClickListener(this);
                 }
