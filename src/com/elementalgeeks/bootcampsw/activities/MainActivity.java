@@ -52,9 +52,9 @@ public class MainActivity extends ActionBarActivity implements TabListener {
 		FragmentManager manager = getSupportFragmentManager();
 		FragmentTransaction transaction = manager.beginTransaction();
 		for (Fragment frag : fragments) {
-			transaction.add(R.id.main, frag);
+			transaction.add(R.id.main, frag).hide(frag);
 		}
-		transaction.commit();
+		transaction.show(fragments[0]).commit();
 	}
 
 	@Override
