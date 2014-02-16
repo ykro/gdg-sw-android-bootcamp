@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.elementalgeeks.bootcampsw.App;
 import com.elementalgeeks.bootcampsw.R;
-import com.elementalgeeks.bootcampsw.activities.MainActivity;
 import com.elementalgeeks.bootcampsw.data.Event;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
@@ -35,8 +34,7 @@ public class EventsMapFragment extends SupportMapFragment implements OnInfoWindo
 	}
 
 	
-	public void addMarkersToMap() {
-		((MainActivity)getActivity()).setMenuEnabled(true);		
+	public void addMarkersToMap() {	
 		ArrayList<Event> allTheEvents = app.getEvents();
 		
 		map.clear();

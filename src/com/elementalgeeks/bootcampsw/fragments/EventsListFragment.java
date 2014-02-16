@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.elementalgeeks.bootcampsw.App;
 import com.elementalgeeks.bootcampsw.R;
-import com.elementalgeeks.bootcampsw.activities.MainActivity;
 import com.elementalgeeks.bootcampsw.data.Event;
 
 public class EventsListFragment extends ListFragment {
@@ -39,7 +38,6 @@ public class EventsListFragment extends ListFragment {
 	}
 	
 	public void showEventsOnList() {
-		((MainActivity)getActivity()).setMenuEnabled(true);
 		ArrayList<Event> allTheEvents = app.getEvents();
 		Map<String, String> event;
 		for (Event e : allTheEvents) {
